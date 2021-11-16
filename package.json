@@ -1,0 +1,105 @@
+{
+  "name": "@concrete-form/formik",
+  "version": "0.0.1",
+  "author": "Kevin Gilbert",
+  "description": "Formik implementation for Concrete form",
+  "keywords": [
+    "form",
+    "react",
+    "formik",
+    "concrete-form"
+  ],
+  "repository": "concrete-form/formik",
+  "homepage": "https://github.com/concrete-form/formik",
+  "bugs": "https://github.com/concrete-form/formik/issues",
+  "private": false,
+  "license": "MIT",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "postinstall": "yarn build && cd demo && yarn install",
+    "build": "yarn build:clean && yarn build:transpile && yarn build:types && yarn build:prepare",
+    "build:clean": "rimraf dist",
+    "build:transpile": "concurrently \"yarn build:esm && yarn build:umd\" \"yarn build:cjs\"",
+    "build:esm": "cross-env NODE_ENV=production cross-env BABEL_ENV=esm babel --extensions \".js,.ts,.tsx\" src --out-dir dist --copy-files --no-copy-ignored",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel --extensions \".js,.ts,.tsx\" src --out-dir dist/cjs",
+    "build:umd": "cross-env BABEL_ENV=umd babel --extensions \".js\" dist/ --ignore dist/cjs --out-dir dist/umd --plugins=transform-es2015-modules-umd",
+    "build:types": "tsc --project tsconfig.build.json",
+    "build:prepare": "node scripts/prepareDist.js",
+    "start": "yarn build && concurrently --kill-others \"yarn build:esm --watch\" \"cd demo && yarn start\"",
+    "predeploy": "cd demo && yarn build",
+    "deploy": "gh-pages -d demo/build",
+    "publish:dist": "yarn build && yarn publish dist --access public",
+    "publish:code-coverage": "yarn test:coverage && cat ./coverage/lcov.info | coveralls",
+    "test": "react-scripts test --watchAll=false",
+    "test:watch": "react-scripts test",
+    "test:coverage": "react-scripts test --watchAll=false --coverage",
+    "lint": "eslint src",
+    "lint:fix": "yarn lint --fix"
+  },
+  "dependencies": {
+    "@concrete-form/core": "^0.0.50"
+  },
+  "peerDependencies": {
+    "formik": ">=2.2.0",
+    "react": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/plugin-proposal-export-default-from": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/plugin-transform-typescript": "^7.16.1",
+    "@babel/runtime": "^7.16.0",
+    "@concrete-form/html5": "^0.0.13",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-plugin-typescript-to-proptypes": "^2.0.0",
+    "concurrently": "^6.3.0",
+    "coveralls": "^3.1.1",
+    "cross-env": "^7.0.3",
+    "eslint-plugin-standard-cra": "^1.0.7",
+    "formik": "^2.2.9",
+    "gh-pages": "^3.2.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.4.4",
+    "web-vitals": "^1.0.1",
+    "yup": "^0.32.11"
+  },
+  "resolutions": {
+    "babel-loader": "8.1.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "plugin:standard-cra/recommended"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
