@@ -1,0 +1,11 @@
+form {
+  max-width: 800px;
+}
+
+input:not([type=checkbox]):not([type=radio]), select, textarea {
+  width: 100%;
+  /* max-width: 400px; */
+  box-sizing: border-box;
+  padding: .25rem;
+  margin: .25rem 0;
+}
