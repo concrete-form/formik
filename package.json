@@ -1,6 +1,6 @@
 {
   "name": "@concrete-form/formik",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Kevin Gilbert",
   "description": "Formik implementation for Concrete form",
   "keywords": [
@@ -40,7 +40,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
-    "@concrete-form/core": "^0.0.50"
+    "@concrete-form/core": "^0.0.62"
   },
   "peerDependencies": {
     "formik": ">=2.2.0",
