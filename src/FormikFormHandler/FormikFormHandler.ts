@@ -21,7 +21,7 @@ export default class FormikFormHandler implements FormHandler {
   }
 
   /**
-   * Note: we intentionnaly ignore getFieldProps options since it's already handle by
+   * Note: we intentionnaly ignore getFieldProps options since it's already handled by
    * Concrete Form (checkbox, radio, select, etc)
    */
   public getControlProps (name: string) {
@@ -37,10 +37,16 @@ export default class FormikFormHandler implements FormHandler {
     if (!this.formikProps) {
       throw new Error('Missing Formik context')
     }
-    const { value, error } = this.formikProps.getFieldMeta(name)
+    const { value, error, touched } = this.formikProps.getFieldMeta(name)
+
+    let errors: any[] = []
+    if (touched && error) {
+      errors = Array.isArray(error) ? error : [error]
+    }
+
     return {
       value,
-      errors: error ? [error] : [],
+      errors,
     }
   }
 
@@ -54,11 +60,9 @@ export default class FormikFormHandler implements FormHandler {
     if (!this.formikProps) {
       throw new Error('Missing Formik context')
     }
-    this.formikProps.setFieldValue(name, value, shouldValidate)
     if (shouldTouch) {
-      this.formikProps.setTouched({
-        [name]: true,
-      }, false)
+      this.formikProps.setFieldTouched(name, true, false)
     }
+    this.formikProps.setFieldValue(name, value, shouldValidate)
   }
 }
