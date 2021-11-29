@@ -1,4 +1,4 @@
-import { FormHandler /* Translation, TranslationKeys */ } from '@concrete-form/core'
+import { FormHandler, Translation } from '@concrete-form/core'
 import { FormikProps } from 'formik'
 
 export default class FormikFormHandler implements FormHandler {
@@ -41,7 +41,7 @@ export default class FormikFormHandler implements FormHandler {
 
     let errors: any[] = []
     if (touched && error) {
-      errors = Array.isArray(error) ? error : [error]
+      errors = this.uniqueErrors(Array.isArray(error) ? error : [error])
     }
 
     return {
@@ -65,4 +65,6 @@ export default class FormikFormHandler implements FormHandler {
     }
     this.formikProps.setFieldValue(name, value, shouldValidate)
   }
+
+  private readonly uniqueErrors = (errors: Translation[]) => Array.from(new Set(errors))
 }

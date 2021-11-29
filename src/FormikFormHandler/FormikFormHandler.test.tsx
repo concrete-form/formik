@@ -1,5 +1,6 @@
 import { screen, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import * as Yup from 'yup'
 
 import renderFormAndGetHandler from '../testkit/renderFormAndGetHandler'
 import RequiredInput, { schema } from '../testkit/RequiredInput'
@@ -118,6 +119,27 @@ describe('FormikFormHandler', () => {
 
       await waitFor(() => {
         expect(formHandler.getControlState('test').errors).toHaveLength(1)
+      })
+    })
+
+    it('ignores duplicated errors', async () => {
+      const schema = Yup.object({
+        test: Yup.array().of(Yup.string().min(3, 'err1')).min(1).required(),
+      })
+      const formHandler = renderFormAndGetHandler(
+        {
+          initialValues: { test: [] },
+          formikProps: { validationSchema: schema },
+        },
+        <RequiredInput />,
+      )
+      formHandler.getControlProps('test')
+      act(() => {
+        formHandler.setFieldValue('test', ['fo', 'ba'], true, true)
+      })
+
+      await waitFor(() => {
+        expect(formHandler.getControlState('test').errors).toEqual(['err1'])
       })
     })
   })
