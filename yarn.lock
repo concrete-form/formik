@@ -1265,10 +1265,10 @@
   resolved "https://registry.yarnpkg.com/@concrete-form/core/-/core-0.0.66.tgz#a445adec3aaed7d5ecd3f3598f9438d5de0e69a2"
   integrity sha512-HQsh25Qaq+eKoTAGM0Mn5/dofi0jlnMdxhCaD9uYCvXWzlxJ9sphQeUHbgs/VQv9QbxH8D9P1KG/W5E5gM958Q==
 
-"@concrete-form/html5@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@concrete-form/html5/-/html5-0.0.13.tgz#808c8d7c3d81b2b1e9e6b46b4bf629ce354229e6"
-  integrity sha512-9w7oDtOxNacjautcW1sONqbIFHmskNnttnCCVrQuKqkukrT7q8UvRPzMCEaWArKYMERwsctsF8PVYlp5wev1Vw==
+"@concrete-form/html5@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@concrete-form/html5/-/html5-0.0.16.tgz#f6774b47ccce229cdc1f81b270b0ab0c1aa3f510"
+  integrity sha512-0I9HCt1mOmpCxeJMBWOqfV26PRz657giDeY54M4Zk/VF3fZm9oduj6hEaX4MsvP5PWOQHkrDVUslzfDEnkkPdw==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"

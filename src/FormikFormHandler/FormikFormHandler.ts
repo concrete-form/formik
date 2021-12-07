@@ -14,9 +14,16 @@ export default class FormikFormHandler implements FormHandler {
       throw new Error('Missing Formik context')
     }
 
+    const errors = this.formikProps.errors
+    const touched = this.formikProps.touched
+
+    const hasErrors = Object.entries(errors)
+      .filter(([fieldName, error]) => !!error && touched[fieldName] === true)
+      .length > 0
+
     return {
       isSubmitting: !!this.formikProps.isSubmitting,
-      hasErrors: Object.keys(this.formikProps.errors).length > 0,
+      hasErrors,
     }
   }
 

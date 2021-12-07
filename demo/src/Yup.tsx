@@ -5,7 +5,7 @@ import SubmitButton from '@concrete-form/html5/SubmitButton'
 import { useFormikContext } from 'formik'
 
 export const schema = Yup.object({
-  test: Yup.string().required('required'),
+  test: Yup.string().required().min(10),
 })
 
 const Debug: React.FC = () => {
