@@ -1,6 +1,6 @@
 {
   "name": "@concrete-form/formik",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Kevin Gilbert",
   "description": "Formik implementation for Concrete form",
   "keywords": [
@@ -33,14 +33,15 @@
     "deploy": "gh-pages -d demo/build",
     "publish:dist": "yarn build && yarn publish dist --access public",
     "publish:code-coverage": "yarn test:coverage && cat ./coverage/lcov.info | coveralls",
-    "test": "react-scripts test --watchAll=false",
+    "test": "yarn test:types && react-scripts test --watchAll=false",
+    "test:types": "tsc",
     "test:watch": "react-scripts test",
     "test:coverage": "react-scripts test --watchAll=false --coverage",
     "lint": "eslint src",
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
-    "@concrete-form/core": "^0.0.67"
+    "@concrete-form/core": "^0.0.68"
   },
   "peerDependencies": {
     "formik": ">=2.2.0",
