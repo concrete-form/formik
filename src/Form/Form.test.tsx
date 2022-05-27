@@ -25,7 +25,7 @@ describe('Form', () => {
   it('calls onSubmit', async () => {
     const onSubmit = jest.fn()
     render(<Form onSubmit={onSubmit} initialValues={{}}><button type="submit">submit</button></Form>)
-    userEvent.click(screen.getByRole('button', { name: 'submit' }))
+    await userEvent.click(screen.getByRole('button', { name: 'submit' }))
 
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalled()
@@ -35,7 +35,7 @@ describe('Form', () => {
   it('doesn\'t crash without onSubmit callback', async () => {
     render(<Form initialValues={{}}><button type="submit">submit</button></Form>)
     const submitButton = screen.getByRole('button', { name: 'submit' })
-    userEvent.click(submitButton)
+    await userEvent.click(submitButton)
 
     await waitFor(() => {
       expect(submitButton).toBeEnabled()

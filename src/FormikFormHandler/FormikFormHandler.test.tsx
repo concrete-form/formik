@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/render-result-naming-convention */
 import { screen, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import * as Yup from 'yup'
@@ -5,19 +6,27 @@ import * as Yup from 'yup'
 import renderFormAndGetHandler from '../testkit/renderFormAndGetHandler'
 import RequiredInput, { schema } from '../testkit/RequiredInput'
 
+const wait = async (delay: number) => await new Promise(resolve => setTimeout(resolve, delay))
+
 describe('FormikFormHandler', () => {
   describe('getFormState', () => {
     it('returns isSubmitting=true when form is submitting', async () => {
-      const onSubmit = jest.fn().mockReturnValue(null)
+      // const onSubmit = jest.fn().mockReturnValue(null)
+      const onSubmit = jest.fn(async () => await wait(20)) as any
       const formHandler = renderFormAndGetHandler({ initialValues: {}, onSubmit })
 
       expect(formHandler.getFormState().isSubmitting).toBe(false)
-      userEvent.click(screen.getByRole('button', { name: 'submit' }))
+      await userEvent.click(screen.getByRole('button', { name: 'submit' }))
+
       expect(formHandler.getFormState().isSubmitting).toBe(true)
+
       await waitFor(() => {
         expect(onSubmit).toHaveBeenCalled()
       })
-      expect(formHandler.getFormState().isSubmitting).toBe(false)
+
+      await waitFor(() => {
+        expect(formHandler.getFormState().isSubmitting).toBe(false)
+      })
     })
 
     it('returns hasErrors=true when form has errors', async () => {
@@ -33,12 +42,12 @@ describe('FormikFormHandler', () => {
       const input = screen.getByRole('textbox')
 
       expect(formHandler.getFormState().hasErrors).toBe(false)
-      userEvent.click(input)
-      userEvent.click(document.body)
+      await userEvent.click(input)
+      await userEvent.click(document.body)
       await waitFor(() => {
         expect(formHandler.getFormState().hasErrors).toBe(true)
       })
-      userEvent.type(input, 'foo')
+      await userEvent.type(input, 'foo')
       await waitFor(() => {
         expect(formHandler.getFormState().hasErrors).toBe(false)
       })
@@ -66,9 +75,12 @@ describe('FormikFormHandler', () => {
       act(() => {
         formHandler.setFieldValue('foo', 'bar')
       })
+
       await waitFor(() => {
-        expect(formHandler.getControlState('foo').value).toBe('bar')
+        expect(formHandler.formikProps?.isValidating).toBe(false)
       })
+
+      expect(formHandler.getControlState('foo').value).toBe('bar')
     })
 
     it('validate the field when updating the value', async () => {
@@ -97,8 +109,8 @@ describe('FormikFormHandler', () => {
       const formHandler = renderFormAndGetHandler({ initialValues: { test: 'foo' } }, <RequiredInput />)
       const input = screen.getByRole('textbox')
       expect(formHandler.getControlState('test').value).toBe('foo')
-      userEvent.clear(input)
-      userEvent.type(input, 'bar')
+      await userEvent.clear(input)
+      await userEvent.type(input, 'bar')
       await waitFor(() => {
         expect(formHandler.getControlState('test').value).toBe('bar')
       })
@@ -114,8 +126,8 @@ describe('FormikFormHandler', () => {
       )
       const input = screen.getByRole('textbox')
       expect(formHandler.getControlState('test').errors).toEqual([])
-      userEvent.click(input)
-      userEvent.click(document.body)
+      await userEvent.click(input)
+      await userEvent.click(document.body)
 
       await waitFor(() => {
         expect(formHandler.getControlState('test').errors).toHaveLength(1)
