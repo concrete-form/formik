@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef } from 'react'
 import { Formik, FormikConfig, FormikHelpers } from 'formik'
 import { ConcreteFormProvider, ConcreteFormProps } from '@concrete-form/core'

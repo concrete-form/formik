@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "private": true,
   "devDependencies": {
-    "@concrete-form/core": "link:../node_modules/@concrete-form/core",
     "@concrete-form/formik": "link:../dist",
     "@concrete-form/html5": "link:../node_modules/@concrete-form/html5",
     "@testing-library/jest-dom": "link:../node_modules/@testing-library/jest-dom",
@@ -25,7 +24,7 @@
     "yup": "link:../node_modules/yup"
   },
   "scripts": {
-    "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider node ../node_modules/react-scripts/bin/react-scripts.js start",
     "build": "node ../node_modules/react-scripts/bin/react-scripts.js build",
     "test": "node ../node_modules/react-scripts/bin/react-scripts.js test"
   },

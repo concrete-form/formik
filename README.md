@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/concrete-form/concrete-form">
-    <img alt="Concrete Form" src="https://raw.githubusercontent.com/concrete-form/concrete-form/master/doc/logo.png" width="100" />
+    <img alt="Concrete Form" src="https://raw.githubusercontent.com/concrete-form/concrete-form/main/doc/logo.png" width="100" />
   </a>
 </p>
 
@@ -39,3 +39,8 @@ yarn add @concrete-form/formik
 # OR
 npm install @concrete-form/formik
 ```
+
+<a href="https://concrete-form.com/docs/getting-started/install" target="_blank">Check the installation tool</a>
+
+## Documentation
+https://concrete-form.com/docs/form/formik/api
