@@ -6,8 +6,8 @@ import Autocomplete from '@concrete-form/html5/Autocomplete'
 import FileInput from '@concrete-form/html5/FileInput'
 import Textarea from '@concrete-form/html5/Textarea'
 import Select from '@concrete-form/html5/Select'
-import CheckboxesGroup from '@concrete-form/html5/CheckboxesGroup'
-import RadiosGroup from '@concrete-form/html5/RadiosGroup'
+import CheckboxGroup from '@concrete-form/html5/CheckboxGroup'
+import RadioGroup from '@concrete-form/html5/RadioGroup'
 import DateTime from '@concrete-form/html5/DateTime'
 import ToggleSwitch from '@concrete-form/html5/ToggleSwitch'
 import SingleCheckbox from '@concrete-form/html5/SingleCheckbox'
@@ -64,8 +64,8 @@ const App: React.FC = () => {
       <Textarea name="textarea" placeholder="textarea" />
       <Select name="selectGroup" options={groupOptions} allowEmpty />
       <Select name="selectMultiple" options={groupOptions} multiple allowEmpty />
-      <CheckboxesGroup name="checkbox" options={options} />
-      <RadiosGroup name="radio" options={options} />
+      <CheckboxGroup name="checkbox" options={options} />
+      <RadioGroup name="radio" options={options} />
       <DateTime type="date" name="date" />
       <DateTime type="time" name="time" />
       <DateTime type="datetime" name="datetime" />
