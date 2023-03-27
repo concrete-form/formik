@@ -1,6 +1,6 @@
 {
   "name": "@concrete-form/formik",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Kevin Gilbert",
   "description": "Formik implementation for Concrete form",
   "keywords": [
@@ -10,7 +10,7 @@
     "concrete-form"
   ],
   "repository": "concrete-form/formik",
-  "homepage": "https://concrete-form.com/docs/form/formik/api",
+  "homepage": "https://concrete-form.com/docs/form/formik/intro",
   "bugs": "https://github.com/concrete-form/formik/issues",
   "private": false,
   "license": "MIT",
@@ -29,8 +29,6 @@
     "build:types": "tsc --project tsconfig.build.json",
     "build:prepare": "node scripts/prepareDist.js",
     "dev": "yarn build && concurrently --kill-others \"yarn build:esm --watch\" \"cd demo && yarn start\"",
-    "predeploy": "cd demo && yarn build",
-    "deploy": "gh-pages -d demo/build",
     "publish:dist": "yarn build && yarn publish dist --access public",
     "publish:code-coverage": "yarn test:coverage && cat ./coverage/lcov.info | coveralls",
     "test": "yarn test:types && react-scripts test --watchAll=false",
@@ -41,8 +39,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
-    "@concrete-form/core": "^0.0.70",
-    "babel-loader": "8.2.5"
+    "@concrete-form/core": "^1.0.2"
   },
   "peerDependencies": {
     "formik": ">=2.2.0",
@@ -54,7 +51,7 @@
     "@babel/plugin-transform-runtime": "^7.18.2",
     "@babel/plugin-transform-typescript": "^7.18.1",
     "@babel/runtime": "^7.18.3",
-    "@concrete-form/html5": "^0.0.17",
+    "@concrete-form/html5": "^1.0.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
@@ -62,6 +59,7 @@
     "@types/node": "^17.0.35",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "babel-loader": "8.2.5",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-plugin-typescript-to-proptypes": "^2.0.0",
     "concurrently": "^7.2.1",
@@ -69,7 +67,6 @@
     "cross-env": "^7.0.3",
     "eslint-plugin-standard-cra": "^1.0.8",
     "formik": "^2.2.9",
-    "gh-pages": "^4.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.1",
