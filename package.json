@@ -1,6 +1,6 @@
 {
   "name": "@concrete-form/formik",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Kevin Gilbert",
   "description": "Formik implementation for Concrete form",
   "keywords": [
@@ -39,7 +39,7 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
-    "@concrete-form/core": "^1.0.6"
+    "@concrete-form/core": "^1.0.7"
   },
   "peerDependencies": {
     "formik": ">=2.2.0",
@@ -51,7 +51,7 @@
     "@babel/plugin-transform-runtime": "^7.18.2",
     "@babel/plugin-transform-typescript": "^7.18.1",
     "@babel/runtime": "^7.18.3",
-    "@concrete-form/html5": "^1.0.0",
+    "@concrete-form/html5": "^1.0.6",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^14.2.0",
